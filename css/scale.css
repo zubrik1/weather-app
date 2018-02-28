@@ -1,0 +1,28 @@
+.scale-container{
+  display: flex;
+}
+.input-hide {
+	width: 0.1px;
+	height: 0.1px;
+	opacity: 0;
+	overflow: hidden;
+	position: absolute;
+	z-index: -1;
+}
+.scale-container label{
+  display: inline-block;  
+
+  background-color: rgba(0, 0, 0, 0.4);
+  font-family: 'Josefin Sans', sans-serif;  
+  font-size: 1.4em;
+  padding: 0.2em 1em;
+  color: #111;
+  cursor: pointer;
+ }
+ input[name="toggleScale"]:checked + label{
+  background-color: rgba(0, 0, 0, 0.7);
+  color: #fff;
+ 
+  -webkit-box-shadow: #000 1px 1px 10px inset;
+  box-shadow: #000 1px 1px 10px inset;
+}
