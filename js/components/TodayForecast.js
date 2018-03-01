@@ -1,4 +1,4 @@
-export default class WeekForecast {
+export default class TodayForecast {
 	constructor() {
 		this.props = {};
 		// this.state = {

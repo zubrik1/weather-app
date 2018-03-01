@@ -1,5 +1,7 @@
 .days-container{
   display: flex;
+  justify-content: center;
+  margin: 0;
 }
 .input-hide {
 	width: 0.1px;

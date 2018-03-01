@@ -7,9 +7,13 @@ class Scale {
 		this.host = document.createElement('div');
 		this.host.classList.add('scale-container');
 
-		//this.host.addEventListener('click', this.handleScale);
+		this.host.addEventListener('change', this.handleScale);
 	}
-	
+	updateState(nextState){
+		this.state = Object.assign({}, this.state, nextState);
+		this.render();
+	}
+
 	update(nextProps){
 		this.props = nextProps;
 		console.log(this.props);
@@ -20,7 +24,7 @@ class Scale {
 		this.host.innerHTML = `
             <input type="radio" name="toggleScale" id="C" value="metric" class="input-hide" checked></input>
             <label for="C">°C</label> 
-            <input type="radio" name="toggleScale" id="F" value="imperial" class="input-hide"></input>            
+            <input type="radio" name="toggleScale" id="F" value="imperial" class="input-hide"></input>
             <label for="F">°F</label> `;
         
 		return this.host;

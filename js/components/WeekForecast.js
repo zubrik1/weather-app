@@ -8,8 +8,7 @@ export default class WeekForecast {
 		// 	days: 3
 		// };
 		this.host = document.createElement('div');
-
-		//this.host.addEventListener('click', this.handleScale);
+		this.host.classList.add('forecast-container');
 	}
 	
 	update(nextProps){
@@ -23,7 +22,7 @@ export default class WeekForecast {
 		if(Object.keys(forecast).length === 0){
 			return this.host.innerHTML = '';
 		}
-		const items = forecast.data.map((data) => {
+		const items = forecast.data.slice(0, this.props.days).map((data) => {
 			return `
 				<div class='mainForecastItem'>
 					<div class='summary'>
