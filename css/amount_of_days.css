@@ -1,7 +1,9 @@
 .days-container{
   display: flex;
-  justify-content: center;
+  font-family: 'Jura', sans-serif;
+  width: 100%;
   margin: 0;
+  
 }
 .input-hide {
 	width: 0.1px;
@@ -14,10 +16,11 @@
 .days-container label{
   display: inline-block;  
   background-color: rgba(0, 0, 0, 0.4);
-  font-family: 'Josefin Sans', sans-serif;  
-  font-size: 1.4em;
-  padding: 0.2em 1em;
-  color: #111;
+  width: 100%;
+  font-size: 1.2em;
+  padding: 0.5em;
+  text-align: center;
+  color: #aaa;
   cursor: pointer;
  }
  input[name="selectDay"]:checked + label{

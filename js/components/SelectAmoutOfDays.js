@@ -18,7 +18,7 @@ class AmountOfDays {
 	
 	update(nextProps){
 		this.props = nextProps;
-		console.log(this.props);
+		//console.log(this.props);
 		return this.render();
 	}
 

@@ -16,20 +16,17 @@ class Scale {
 
 	update(nextProps){
 		this.props = nextProps;
-		console.log(this.props);
 		return this.render();
 	}
-    
+
 	render() {
 		this.host.innerHTML = `
-            <input type="radio" name="toggleScale" id="C" value="metric" class="input-hide" checked></input>
-            <label for="C">°C</label> 
-            <input type="radio" name="toggleScale" id="F" value="imperial" class="input-hide"></input>
-            <label for="F">°F</label> `;
+		<select class="scale-container-select" title="Select units">
+        	<option selected}>°C</option>
+        	<option>°F</option>
+      	</select> `;
         
 		return this.host;
 	}
-
-
 }
 export default Scale;

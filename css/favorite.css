@@ -1,0 +1,37 @@
+.favorite-cities{
+  background-color: rgba(0, 0, 0, 0.4);
+}
+.favorite{
+  display: flex;
+  justify-content: space-between;
+  font-family: 'Jura', sans-serif;
+  align-items: center;
+  width: 100%;
+  height: 45px;
+  margin: 0;
+  color: #aaa;
+  background-color: rgba(0, 0, 0, 0.7);
+  font-size: 1.1em;
+    
+}
+.favoriteTitle{
+  margin: 0 0.5em;
+  font-weight: normal;
+  font-size: 1.1em;
+
+}
+.deleteFavoriteBtn{
+  margin: 0 0.2em 0 0;;
+  border: none;
+  background: none;
+  font-size: 0.8em;
+  color: #aaa;
+}
+
+.favorite-container {
+  display: flex;
+  justify-content: space-between;
+  color: #aaa;
+  padding: 0.6em 0.5em;
+  border-bottom: 1px dotted #000;
+}

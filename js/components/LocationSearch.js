@@ -19,7 +19,6 @@ class LocationSearch {
 
 	update(nextProps){
 		this.props = nextProps;
-		console.log(this.props);
 		return this.render();
 	}
 
@@ -39,11 +38,12 @@ class LocationSearch {
 		const { isValid } = this.state;
 		const { city } = this.props;
 		this.host.innerHTML = `
-            <form class =${isValid ? '"weather-form"' : '"weather-form -invalid"'}>
+			<form class =${isValid ? '"weather-form"' : '"weather-form -invalid"'}>
+				<button class='weather-search bat-button'></button>
                 <input name = 'search' required class = 'search-field' autofocus 
-				placeholder="Enter the city that needs a hero... or forecast" value=${city}>
-				<button class='weather-search submit-button'>F</button>
-				<button class='weather-search location-button'>L</button>
+				placeholder="Enter the city that needs a hero... or forecast" value=${city}>				
+				<button class='weather-search submit-button'><i class="fas fa-search"></i></button>
+				
             </form>`;
 
 		return this.host;
