@@ -7,7 +7,7 @@ export default class RecentCities{
 		this.handleClick = this.handleClick.bind(this);
 		// this.addRecentCities = this.addRecentCities.bind(this);
 		
-		this.host = document.createElement('div');
+		this.host = document.createElement('ul');
 		this.host.classList.add('recent-cities');
 
 		this.host.addEventListener('click', this.handleClick);
@@ -22,7 +22,8 @@ export default class RecentCities{
 	}
 
 	handleClick(ev) {
-		const cityClick = ev.target.text;
+		const cityClick = ev.target.innerHTML;
+		console.log(ev);
 		this.props.onClick(cityClick);
 	}
 	
@@ -30,7 +31,7 @@ export default class RecentCities{
 	render() {
 		const {recentCities}  = this.props;
 		this.host.innerHTML = recentCities.map((city) => {
-			return `<a>${city}</a>`;
+			return `<li>${city}</li>`;
 		}).join('');
 
 		return this.host;

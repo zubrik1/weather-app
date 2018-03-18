@@ -8,21 +8,21 @@ body{
               url(../img/fon.jpg) 0% 100%/cover;
   background-repeat: no-repeat;
   display: flex;
-  font-family: 'Jura', sans-serif;
-  
-}
-.favorite-block{
-  width: 200px;
+  font-family: 'Jura', sans-serif;  
 }
 
 .forecast-block{
-  width: 900px; 
-  margin-left: 50px;
+  width: 80%; 
+  max-width: 900px;
+  margin: 0 auto; 
 }
 
-.weather-form{
+.search-container{
    display: flex;
-   justify-content: center;  
+   justify-content: space-between;   
+}
+.weather-form{
+  width: 100%; 
 }
 .search-field {
   width: calc(100% - 122px); 

@@ -1,14 +1,9 @@
-body{
-  padding: 0;
-  margin: 0;
-}
 .mainForecast{
   display: flex;
   flex-wrap: wrap;
+  margin-top: 1em;
   justify-content: center;
-  margin: 0 auto;
-  font-family: 'Jura', sans-serif;
- 
+  font-family: 'Jura', sans-serif; 
 }
 .mainForecastItem{
   display: flex;

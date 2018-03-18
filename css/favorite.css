@@ -1,24 +1,25 @@
 .favorite-cities{
   background-color: rgba(0, 0, 0, 0.4);
+  position: absolute;
+  width: 15%;
+  left: 0px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
 }
-.favorite{
+
+.favoriteTitle{
   display: flex;
-  justify-content: space-between;
   font-family: 'Jura', sans-serif;
   align-items: center;
-  width: 100%;
+  justify-content: center;  
   height: 45px;
   margin: 0;
   color: #aaa;
   background-color: rgba(0, 0, 0, 0.7);
-  font-size: 1.1em;
-    
-}
-.favoriteTitle{
-  margin: 0 0.5em;
+ 
   font-weight: normal;
   font-size: 1.1em;
-
 }
 .deleteFavoriteBtn{
   margin: 0 0.2em 0 0;;
@@ -26,12 +27,22 @@
   background: none;
   font-size: 0.8em;
   color: #aaa;
+  cursor: pointer;
+  
 }
-
+.deleteFavoriteBtn:hover{
+  color: crimson;
+}
 .favorite-container {
   display: flex;
   justify-content: space-between;
   color: #aaa;
-  padding: 0.6em 0.5em;
+ 
+  
   border-bottom: 1px dotted #000;
 }
+ .favorite-container a{
+  cursor: pointer;
+  width: 90%;
+  padding: 0.6em 0.5em;
+ }

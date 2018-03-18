@@ -4,42 +4,46 @@ export default class FavoriteCities{
 	constructor() {
 		this.props = {};
         
-		this.host = document.createElement('div');
+		this.host = document.createElement('ul');
 		this.host.classList.add('favorite-cities');
+		
+		this.handleClick = this.handleClick.bind(this);
+		this.host.addEventListener('click', this.handleClick);
 	}
-	
+	updateState(nextState){
+		this.state = Object.assign({}, this.state, nextState);
+		this.render();
+	}
 	update(nextProps){
 		this.props = nextProps;
-		//console.log(this.props);
+		console.log(this.props);
 		return this.render();
 	}
 
-	addRecentCities(city){
-		const list = this.state.recentCities;
-		for (let i = 0; i < list.length; i++) {
-			if (list[i].toLowerCase() === city.toLowerCase()) {
-				return;
-			} 
+	handleClick(ev) {
+		if(ev.target.className === 'favoriteItem'){
+			const cityClick = ev.target.text;
+			//console.log(ev);
+			this.props.onClick(cityClick);
 		}
-		list.push(city);
-		localStorage.setItem('recentCities', JSON.stringify(list));
+		else if(ev.target.tagName === 'svg' || ev.target.className ==='deleteFavoriteBtn'){
+			localStorage.removeItem('favoriteCities');
+			console.log(this.props.favoriteCities);
+		}
 	}
 
 	render() {
-		const {}  = this.props;
+		const {favoriteCities}  = this.props;
 		this.host.innerHTML = `        
-        <header class = 'favorite'>  
             <h4 class = 'favoriteTitle'> Favorite cities</h4>
-		</header>
-		<div class = 'favorite-container'>  
-			<a>city</a>
+		`;
+		this.host.innerHTML += favoriteCities.map((city)=>{
+			return `<li class = 'favorite-container'>  
+			<a class ='favoriteItem'>${city}</a>
 			<button class ='deleteFavoriteBtn'> <i class="fas fa-ban"></i></button>
-		</div>
-		<div class = 'favorite-container'>  
-			<a>city</a>
-			<button class ='deleteFavoriteBtn'> <i class="fas fa-ban"></i></button>
-		</div>
-       `;
+			</div>`;
+		}).join(' ');
+
 		return this.host;
 	}
     
