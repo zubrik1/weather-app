@@ -2,7 +2,7 @@
   background-color: rgba(0, 0, 0, 0.4);
   position: absolute;
   width: 15%;
-  left: 0px;
+  left: 5px;
   list-style: none;
   margin: 0;
   padding: 0;
@@ -22,27 +22,27 @@
   font-size: 1.1em;
 }
 .deleteFavoriteBtn{
-  margin: 0 0.2em 0 0;;
+  margin: 0 0.5em 0 0;;
   border: none;
-  background: none;
-  font-size: 0.8em;
-  color: #aaa;
+  background: url('../img/delete.png') no-repeat 100% / 100% ;
+  width: 6%;
   cursor: pointer;
   
 }
 .deleteFavoriteBtn:hover{
-  color: crimson;
+  background: url('../img/delete1.png') no-repeat 100% / 100% ;
 }
 .favorite-container {
   display: flex;
-  justify-content: space-between;
-  color: #aaa;
- 
-  
+  justify-content: space-around;
+  color: #aaa;  
   border-bottom: 1px dotted #000;
 }
  .favorite-container a{
   cursor: pointer;
-  width: 90%;
+  width: 60%;
   padding: 0.6em 0.5em;
+ }
+ .favorite-container a:hover{
+   color: #5d69d3;
  }

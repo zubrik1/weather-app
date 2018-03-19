@@ -1,5 +1,6 @@
 // import WeatherApi from '../services/api.js';
 import '../../css/hourly_view.css';
+import { toFahrenheit } from '../utils/toFahrenheit';
 
 export default class HourlyForecast {
 	constructor() {
@@ -20,13 +21,14 @@ export default class HourlyForecast {
 		if(Object.keys(forecast).length === 0){
 			return this.host.innerHTML = '';
 		}
+		const { isCelsius } = this.props;
 		const items = forecast.data.slice(2, 10).map((data) => {
 			return `
 				<div class='hourlyForecastItem'>
 					<div class = 'hour'> ${(data.datetime).slice(-2)}:00</div>	
 					<div class='hourlySummary'>											
 						<div class = 'hourlyTemperature'>
-							<h2 class = 'hourlyTemperature'> ${Math.round(data.temp)}° </h2>
+							<h2 class = 'hourlyTemperature'> ${isCelsius ? Math.round(data.temp)+' °C' : Math.round(toFahrenheit(data.temp)) +' °F'} </h2>
 							<img src = 'img/icons/${data.weather.icon}.png'>
 						</div>
 						<h4 class ='hourlyDescription'>${data.weather.description}</h4>							
@@ -46,11 +48,7 @@ export default class HourlyForecast {
 			`;
 		}).join('');
 
-		this.host.innerHTML = `
-			<div class='mainForecast'>
-				${items}
-			</div>
-		`;
+		this.host.innerHTML = `${items}`;
 		
 		return this.host;
 	}

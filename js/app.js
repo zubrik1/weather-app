@@ -25,8 +25,8 @@ class App {
 			forecast: {},
 			hourlyForecast: {},
 			days: 1,
+			isCelsius: true,
 
-			//scale: isCelius;
 		};
 	
 		this.onSearchSubmit = this.onSearchSubmit.bind(this);
@@ -34,7 +34,7 @@ class App {
 		this.onAmountDaysChange = this.onAmountDaysChange.bind(this);
 		this.onRecentClick = this.onRecentClick.bind(this);
 		this.onFavoriteClick = this.onFavoriteClick.bind(this);
-		//this.addRecentCitiesSubmit = this.addRecentCitiesSubmit.bind(this);
+		this.onChangeScale = this.onChangeScale.bind(this);
 		
 		
 		this.weatherApi = new WeatherApi();		
@@ -45,14 +45,18 @@ class App {
 		});
 
 		this.hourlyForecast= new HourlyForecast({
-			hourlyForecast: this.state.hourlyForecast
+			hourlyForecast: this.state.hourlyForecast,
+			isCelsius: this.state.isCelsius,
 		});
 
 		this.changeScale = new Scale({
+			isCelsius: this.state.isCelsius,
+			onChange: this.onChangeScale,
 		});
 		this.weekForecast = new WeekForecast({
 			forecast: this.state.forecast,
-			days: this.state.days
+			days: this.state.days,
+			isCelsius: this.state.isCelsius,
 		});
 
 		this.amountOfDays = new AmountOfDays({
@@ -121,24 +125,18 @@ class App {
 		this.updateState({favoriteCities: list});
 	}
 	getData (city) {
-		if (this.state.days == 1 ) { //eslint-disable-line
-			this.weatherApi.getCurrentWeather({ city })			
-				.then(( forecast ) => {
-					forecast.data[0].datetime = forecast.data[0].datetime.slice(0, -3);
-					this.updateState({ city, forecast});
-				});
-				
+		
+		this.weatherApi.getDailyForecast({days: this.state.days, city })
+			.then((forecast) => {
+				this.updateState({ city, forecast });
+			});
+		if (this.state.days == 1 ) {  //eslint-disable-line	
 			this.weatherApi.getHourlyForecast({ city })
 				.then((hourlyForecast ) => {
 					this.updateState({ city, hourlyForecast});
 				});
-				
-		} else{
-			this.weatherApi.getDailyForecast({days: this.state.days, city })
-				.then((forecast) => {
-					this.updateState({ city, forecast });
-				});
-		}
+		}	
+	
 		//history.pushState({}, 'city', `?city=${city}` );
 	}
 
@@ -147,19 +145,46 @@ class App {
 		this.updateState({ days });
 		this.getData(this.state.city, days);
 	}
+	onChangeScale (ev){
+		if(ev.target.value === '°C'){
+			console.log(ev.target.value);
+			const isCelsius = true;
+			this.updateState({ isCelsius });
+			this.getData(this.state.city);
+		}
+		if(ev.target.value === '°F'){
+			console.log(ev.target.value);
+			const isCelsius = false;
+			this.updateState({ isCelsius });
+			this.getData(this.state.city);
+		}
+	}
+
 	onRecentClick(city){
 		this.updateState({city});
 		this.getData(city);
 	}
 
-	onFavoriteClick(city){
-		this.updateState({ city });
-		this.getData(city);
+	onFavoriteClick(ev){				
+		if(ev.target.className === 'favoriteItem'){
+			const city = ev.target.text;
+			this.updateState({ city });
+			this.getData(city);
+		}
+		else if(ev.target.className ==='deleteFavoriteBtn'){
+			const currentCity = ev.target.previousSibling.previousSibling.innerHTML;		
+			const favoriteCities = this.state.favoriteCities;
+			const remove = favoriteCities.indexOf(currentCity);
+			favoriteCities.splice(remove, 1);
+			localStorage.setItem('favoriteCities', JSON.stringify(favoriteCities));
+			this.updateState({ favoriteCities });
+		}
+	
 	}
 	
 
 	render() {
-		const { city, forecast, days, hourlyForecast, recentCities, favoriteCities } = this.state;
+		const { city, forecast, days, hourlyForecast, recentCities, favoriteCities, isCelsius } = this.state;
 		
 		this.host.innerHTML = '';
 		
@@ -171,10 +196,10 @@ class App {
 			this.locationSearch.update({ city, onSubmit: this.onSearchSubmit, onClick: this.addFavoriteCities}),	
 			this.recentCities.update({city, recentCities, onClick: this.onRecentClick}),
 			this.tools,
-			this.weekForecast.update({ forecast, days, city })
+			this.weekForecast.update({ forecast, days, city, isCelsius })
 		);
 		if (this.state.days == 1 ) { //eslint-disable-line
-			this.main.append(this.hourlyForecast.update({ hourlyForecast, days, city }));
+			this.main.append(this.hourlyForecast.update({ hourlyForecast, days, city, isCelsius }));
 		} else {
 			const container = document.querySelector('.hourlyForecast-container');
 			if (container) {
@@ -183,7 +208,7 @@ class App {
 		}
 		this.tools.append(
 			this.amountOfDays.update({days, city, onChange: this.onAmountDaysChange}),
-			this.changeScale.render(),
+			this.changeScale.update({isCelsius, onChange: this.onChangeScale }),
 		);
 		return this.host;
 	}	

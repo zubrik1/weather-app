@@ -1,4 +1,4 @@
-// import WeatherApi from '../services/api.js';
+import {toFahrenheit} from '../utils/toFahrenheit.js';
 import '../../css/week_view.css';
 
 export default class WeekForecast {
@@ -20,6 +20,8 @@ export default class WeekForecast {
 		if(Object.keys(forecast).length === 0){
 			return this.host.innerHTML = '';
 		}
+		const { isCelsius } = this.props;
+		console.log(isCelsius);
 		const items = forecast.data.slice(0, this.props.days).map((data) => {
 			return `
 				<div class='mainForecastItem'>
@@ -29,17 +31,17 @@ export default class WeekForecast {
 							<div class = 'dateFull'> ${new Date(data.datetime).toLocaleString('en-US', {year: 'numeric', month: 'short', day: 'numeric' })}</div>
 						</div>
 						<div class = 'temperature'>
-							<h2 class = 'avrTemperature'> ${Math.round(data.temp)}° </h2>
+							<h2 class = 'avrTemperature'> ${isCelsius ? Math.round(data.temp) : Math.round(toFahrenheit(data.temp))}° </h2>
 							<img src = 'img/icons/${data.weather.icon}.png'>
 						</div>
 						<div class = 'minMax'>
 							<div class ='minTemperature'>
 								<span>min:  </span>
-								<span>${Math.round(data.min_temp)}° | </span>
+								<span>${isCelsius ? Math.round(data.min_temp) : Math.round(toFahrenheit(data.min_temp))}° | </span>
 							</div>
 							<div class = 'maxTemperature'>
 								<span>| max: </span>
-								<span>${Math.round(data.max_temp)}°</span>
+								<span>${isCelsius ? Math.round(data.max_temp):  Math.round(toFahrenheit(data.max_temp))}°</span>
 							</div>
 						</div>
 						<h4>${data.weather.description}</h4>

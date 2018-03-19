@@ -21,16 +21,9 @@ export default class FavoriteCities{
 	}
 
 	handleClick(ev) {
-		if(ev.target.className === 'favoriteItem'){
-			const cityClick = ev.target.text;
-			//console.log(ev);
-			this.props.onClick(cityClick);
-		}
-		else if(ev.target.tagName === 'svg' || ev.target.className ==='deleteFavoriteBtn'){
-			localStorage.removeItem('favoriteCities');
-			console.log(this.props.favoriteCities);
-		}
+		this.props.onClick(ev);
 	}
+
 
 	render() {
 		const {favoriteCities}  = this.props;
@@ -40,7 +33,7 @@ export default class FavoriteCities{
 		this.host.innerHTML += favoriteCities.map((city)=>{
 			return `<li class = 'favorite-container'>  
 			<a class ='favoriteItem'>${city}</a>
-			<button class ='deleteFavoriteBtn'> <i class="fas fa-ban"></i></button>
+			<button class ='deleteFavoriteBtn'></button>
 			</div>`;
 		}).join(' ');
 

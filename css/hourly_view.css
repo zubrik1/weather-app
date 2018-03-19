@@ -4,37 +4,42 @@ body{
   }
   .hourlyForecast-container{
     display: flex;
+    flex-wrap: wrap;
     width: 900px;
     text-align: center;
     justify-content: center;
-    margin: 0 auto;
+    margin: 2em auto;
     font-family: 'Jura', sans-serif;
     padding-bottom: 5em;
   }
   .hourlyForecastItem{
     display: flex;
-    flex-direction: column;
-    justify-content: space-between;
+    flex-direction: column;   
     margin: 1px;
     background-color: rgba(0, 0, 0, 0.8);
     color: #aaa;
-    width: 100px;
-    padding: 5px;
+    width: 105px;
+   
    
   }
-  .hourlySummary{
+  .hour{
+    background-color: rgba(0, 0, 0, 0.5);
+    padding: 5px;
     
   }
-  
-  .hourlySummary img{
-   width: 30px;
-   height: 30px;
-   margin: 0 0.2em;
-   }
+.hourlySummary{    
+    margin: 5px;
+}
+
+.hourlySummary img{
+  width: 30px;
+  height: 30px;
+  margin: 0 0.2em;
+}
 
   .hourlyTemperature{
-      display: flex;
-      justify-content: space-around;
+    display: flex;
+    justify-content: space-around;
     font-size: 1em;
     margin: 0;
     align-self: center;
@@ -42,10 +47,12 @@ body{
   .hourlyDescription {
     font-size: 0.9em;
     font-weight: normal;
+    margin: 0.5em;
   }  
   .hourlyDetails{
    display: flex;   
    justify-content: space-around;
+   margin: 5px;
    font-size: 0.8em; 
   }
   

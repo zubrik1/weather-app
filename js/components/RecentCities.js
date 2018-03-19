@@ -22,16 +22,18 @@ export default class RecentCities{
 	}
 
 	handleClick(ev) {
-		const cityClick = ev.target.innerHTML;
-		console.log(ev);
-		this.props.onClick(cityClick);
+		if(ev.target.className === 'recentItem') {
+			const cityClick = ev.target.innerHTML;
+			console.log(ev);
+			this.props.onClick(cityClick);
+		}
 	}
 	
 
 	render() {
 		const {recentCities}  = this.props;
 		this.host.innerHTML = recentCities.map((city) => {
-			return `<li>${city}</li>`;
+			return `<li class='recentItem'>${city}</li>`;
 		}).join('');
 
 		return this.host;

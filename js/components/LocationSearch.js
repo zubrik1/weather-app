@@ -42,8 +42,7 @@ class LocationSearch {
 		}
 	}
 
-	handleBatClick(ev) {
-		
+	handleBatClick(ev) {		
 		if(ev.target.className === 'weather-search bat-button'){//eslint-disable-line
 			this.props.onClick();
 		}

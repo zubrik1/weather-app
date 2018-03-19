@@ -10,3 +10,6 @@
   color: #666;
   cursor: pointer;
 }
+.recent-cities li:hover{
+  color: #5d69d3;
+}

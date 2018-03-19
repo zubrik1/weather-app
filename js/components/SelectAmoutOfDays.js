@@ -24,6 +24,7 @@ class AmountOfDays {
 
 	handleChange(ev) {
 		const amountOfDays = ev.target.value;
+		console.log(amountOfDays);
 		this.props.onChange(amountOfDays);
 	}
 
